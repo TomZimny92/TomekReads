@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './styles.css'
+import { Records } from './components/Records.tsx'
 
 function App() {
 	

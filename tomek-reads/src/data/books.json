@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Wrony",
+        "author": "Petra Dvorakova",
+        "rating": 5,
+        "review": "Good!"
+    },
+    {
+        "id": 2,
+        "name": "Be The Unicorn",
+        "author": "John C. Maxwell",
+        "rating": 3,
+        "review": "mid"
+    },
+    {
+        "id": 3,
+        "name": "The Stranger",
+        "author": "Albert Camus",
+        "rating": 5,
+        "review": "what's the point?"
+    }
+]
