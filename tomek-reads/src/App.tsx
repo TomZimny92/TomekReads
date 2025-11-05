@@ -1,22 +1,59 @@
 import { useState } from 'react'
-import './styles.css'
-import { Records } from './components/Records.tsx'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
+//import { BookView } from './components'
 
 function App() {
-	
+  const [count, setCount] = useState(0)
+
+	type BookType = {
+	id: string,
+	name: string,
+	author?: string,
+	rating?: number,
+	review?: string,
+}
+
+function BookView({ book }: BookType) {
+	return (
+	<>
+			<label>{book.name}</label>
+			<label>{book.author}</label>
+			<label>{book.rating}</label>
+			<label>{book.review}</label>
+	</>
+	)
+}
+
+	const testbook: BookType = {"id": "1", "name": "test", "author": "jim", "rating": 3, "review": "hello"}
+
   return (
     <>
-			<div>
-				<input className="filter-records" placeholder="Search for book..." />
-			</div>
-			<div>
-				<button className="add-book">+</button>
-			</div>
-			<div>
-				<Records />
-			</div>
+      <div>
+        <a href="https://vite.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
+      </div>
+       <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.tsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+			<BookView book={testbook} />
     </>
   )
 }
+
 
 export default App
