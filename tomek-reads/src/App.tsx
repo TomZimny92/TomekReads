@@ -1,59 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-//import { BookView } from './components'
+// src/App.tsx
 
-function App() {
-  const [count, setCount] = useState(0)
+import React from 'react';
+import BookView from './components/BookView';
+import { BookType } from './types/BookType'; // Adjust path if needed
 
-	type BookType = {
-	id: string,
-	name: string,
-	author?: string,
-	rating?: number,
-	review?: string,
-}
+// 1. Define the static list of books using the BookType interface
+const bookList: BookType[] = [
+  { id: 1, title: 'The Lord of the Rings', author: 'J.R.R. Tolkien', year: 1954 },
+  { id: 2, title: 'Pride and Prejudice', author: 'Jane Austen', year: 1813 },
+  { id: 3, title: '1984', author: 'George Orwell', year: 1949 },
+];
 
-function BookView({ book }: BookType) {
-	return (
-	<>
-			<label>{book.name}</label>
-			<label>{book.author}</label>
-			<label>{book.rating}</label>
-			<label>{book.review}</label>
-	</>
-	)
-}
-
-	const testbook: BookType = {"id": "1", "name": "test", "author": "jim", "rating": 3, "review": "hello"}
-
+const App: React.FC = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-       <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-			<BookView book={testbook} />
-    </>
-  )
-}
+    <div>
+      <h1>**My Book Collection**</h1>
+      {/* 2. Use the map() function to iterate and render BookView for each book */}
+      {bookList.map((book) => (
+        <BookView 
+          key={book.id} // **Crucial:** Always include a unique 'key' prop when mapping elements
+          book={book} 
+        />
+      ))}
+    </div>
+  );
+};
 
-
-export default App
+export default App;
