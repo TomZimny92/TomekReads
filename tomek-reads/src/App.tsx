@@ -13,7 +13,7 @@ function App() {
     <h3>Books!</h3>
     <button className='text-lg bg-green-500' onClick={openAddModal}>Add Book</button>
       {books.map((book) => {
-        return <li><BookView book={book} /></li>
+        return <BookView book={book} />
       })}
     </>
   )

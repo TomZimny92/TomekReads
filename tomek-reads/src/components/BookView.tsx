@@ -1,18 +1,20 @@
 import type { BookType } from "../types/BookType"
 
-interface BookViewProps {
-  book: BookType
+interface bookProp {
+    book: BookType
 }
 
-const BookView: React.FC<BookViewProps> = ({book}) => {
-  return (
-    <>
+function BookView({book}: bookProp) {
+    return (
+        <>
+    <div className='border border-solid border-red-600 rounded'>
       <div>{book.title}</div>
       <div>{book.author}</div>
       <div>{book.rating}</div>
       <div>{book.review}</div>
-    </>
-  )
+    </div>
+        </>
+    );
 }
 
 export default BookView
