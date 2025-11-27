@@ -21,8 +21,8 @@ function App() {
 
 
 const books: BookType[] = [
-  { id: "1", title: "test", author: "test", rating: 3, review: "good"},
-  { id: "2", title: "rest", author: "rest", rating: 3, review: "rood"}
+  { id: "1", title: "test", author: "test", rating: 3, review: "good", publicationDate: "yesterday", pageCount: 60},
+  { id: "2", title: "rest", author: "rest", rating: 3, review: "rood", publicationDate: "today", pageCount: 50}
 ]
 
 function openAddModal(): void {

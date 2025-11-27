@@ -12,6 +12,10 @@ function BookView({book}: bookProp) {
           <div>{book.author}</div>
           <div>{book.rating}</div>
           <div>{book.review}</div>
+          <div>{book.publicationDate}</div>
+          <div>{book.pageCount}</div>
+          <div>{book.bookStartDate}</div>
+          <div>{book.bookFinishDate}</div>
         </div>
       </>
     );
