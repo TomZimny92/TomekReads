@@ -6,14 +6,14 @@ interface bookProp {
 
 function BookView({book}: bookProp) {
     return (
-        <>
-    <div className='border border-solid border-red-600 rounded'>
-      <div>{book.title}</div>
-      <div>{book.author}</div>
-      <div>{book.rating}</div>
-      <div>{book.review}</div>
-    </div>
-        </>
+      <>
+        <div className='border border-solid border-red-600 rounded'>
+          <div>{book.title}</div>
+          <div>{book.author}</div>
+          <div>{book.rating}</div>
+          <div>{book.review}</div>
+        </div>
+      </>
     );
 }
 
