@@ -1,13 +1,16 @@
 import type { BookType } from "../types/BookType";
-import { useState } from "react";
+//import { useState } from "react";
 
-const [bookData, getBookData] = useState<BookType>();
+//const [bookData, getBookData] = useState<BookType>(() => GenerateTestData());
+const bookData: BookType = GenerateTestData();
 
 type BookData = {
     data?: BookType
+    onClose?: () => void
 }
 
-function AddBookModal() {       
+
+function AddBookModal({ onClose }: BookData) {
     return (
         <>
             <div>
@@ -17,7 +20,9 @@ function AddBookModal() {
                 <BookModalBody data={bookData} />
             </div>
             <div>
-                <BookModalButtons />
+                <BookModalButtons onClose={onClose} />
+                // have an emit inside the close button that 
+                // kicks up a trigger to the dialog close
             </div>
         </>
     )
@@ -59,28 +64,42 @@ function BookModalBody({ data }: BookData) {
                 </div>
                 <div>
                     <label>Book Start Date:</label>
-                    <input type="date">Book Start Date</input>
+                    <input type="date" />
                 </div>
                 <div>
                     <label>Book Finish Date:</label>
-                    <input type="date">Book Finish Date</input>
+                    <input type="date" />
                 </div>
             </div>
         </>
     )
 }
 
-function BookModalButtons() {
+function BookModalButtons({ onClose }: BookData) {
     return (
         <>
             <div>
-                <button type="button">Cancel</button>
+                <button type="button" onClick={() => onClose}>Cancel</button>
             </div>
             <div>
                 <button type="submit">Add Book</button>
             </div>
         </>
     )
+}
+
+function GenerateTestData(): BookType {
+    return {
+        id: "1",
+        title: "test title",
+        author: "test author",
+        publicationDate: "2025",
+        pageCount: 32,
+        bookStartDate: "yesterday",
+        bookFinishDate: "today",
+        rating: 4,
+        review: "a good read",
+    } as BookType
 }
 
 export default AddBookModal;
