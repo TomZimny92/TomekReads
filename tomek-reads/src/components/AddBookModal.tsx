@@ -1,18 +1,17 @@
 import type { BookType } from "../types/BookType";
-//import { useState } from "react";
 
-//const [bookData, getBookData] = useState<BookType>(() => GenerateTestData());
 const bookData: BookType = GenerateTestData();
 
 type BookData = {
     data?: BookType
+    dialogRef?: React.RefObject<HTMLDialogElement | null>
     onClose?: () => void
 }
 
 
-function AddBookModal({ onClose }: BookData) {
+function AddBookModal({ dialogRef, onClose }: BookData) {
     return (
-        <>
+        <dialog ref={dialogRef}>
             <div>
                 <SearchBar />            
             </div>
@@ -20,11 +19,14 @@ function AddBookModal({ onClose }: BookData) {
                 <BookModalBody data={bookData} />
             </div>
             <div>
-                <BookModalButtons onClose={onClose} />
-                // have an emit inside the close button that 
-                // kicks up a trigger to the dialog close
+                <div>
+                    <button type="button" onClick={onClose}>Cancel</button>
+                </div>
+                <div>
+                    <button type="submit">Add Book</button>
+                </div>
             </div>
-        </>
+        </dialog>
     )
 }
 
@@ -70,19 +72,6 @@ function BookModalBody({ data }: BookData) {
                     <label>Book Finish Date:</label>
                     <input type="date" />
                 </div>
-            </div>
-        </>
-    )
-}
-
-function BookModalButtons({ onClose }: BookData) {
-    return (
-        <>
-            <div>
-                <button type="button" onClick={() => onClose}>Cancel</button>
-            </div>
-            <div>
-                <button type="submit">Add Book</button>
             </div>
         </>
     )

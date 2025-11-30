@@ -1,26 +1,28 @@
-//import { useState } from 'react'
-//import reactLogo from './assets/react.svg'
-//import viteLogo from '/vite.svg'
 import './App.css'
-import { useRef } from 'react'
+import { useCallback, useRef } from 'react'
 import type { BookType } from "./types/BookType"
 import BookView from './components/BookView'
 import AddBookModal from './components/AddBookModal'
 
 
 function App() {
-const dialogRef = useRef<HTMLDialogElement | null>(null)
-  //const [count, setCount] = useState(0)
+  const dialogRef = useRef<HTMLDialogElement | null>(null)
+  const handleCloseAddModal = useCallback(() => {
+    dialogRef.current?.close();
+  }, [])
+
+  const handleOpenAddModal = () => {
+    dialogRef.current?.showModal();
+  }
+
   return (
     <>
       <h3>Books!</h3>
-      <button className='text-lg bg-green-500' onClick={() => dialogRef.current?.showModal()}>Add Book</button>
+      <button className='text-lg bg-green-500' onClick={handleOpenAddModal}>Add Book</button>
       {books.map((book) => {
         return <BookView key={book.id} book={book} />
       })}
-      <dialog ref={dialogRef}>
-        <AddBookModal onClose={dialogRef.current?.close}/>
-      </dialog>
+      <AddBookModal onClose={handleCloseAddModal} dialogRef={dialogRef}/>
     </>
   )
 }
