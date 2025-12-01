@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import type { BookType } from "../types/BookType";
 
 const bookData: BookType = GenerateTestData();
@@ -31,8 +32,19 @@ function AddBookModal({ dialogRef, onClose }: BookData) {
 }
 
 function SearchBar() {
+
+    //const [bookInput, setBookInput] = useState<BookType>();
+    
+
+    function handleBookInputChange() {
+        console.log(bookInput?.nodeValue);
+    }
     return (
-        <input type="text" placeholder="Enter a book title..." />
+        <input
+            type="text" 
+            placeholder="Enter a book title..."
+            id="bookInput"
+            onInput={handleBookInputChange} />
     );
 }
 
@@ -90,5 +102,7 @@ function GenerateTestData(): BookType {
         review: "a good read",
     } as BookType
 }
+
+let bookInput: HTMLElement | null = document.getElementById("bookInput");
 
 export default AddBookModal;
